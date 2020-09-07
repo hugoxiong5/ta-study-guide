@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 import TopicList from "./components/TopicList.jsx";
 import AddTopicModal from "./components/AddTopicModal.jsx";
@@ -24,6 +24,10 @@ class App extends React.Component {
     });
   }
 
+  async addTopic() {
+
+  }
+
   async getTopics() {
     try {
       const response = await fetch("/topics");
@@ -39,7 +43,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <Container>
         <h1>Study Guide</h1>
         <h2>Topics</h2>
         <TopicList topics={this.state.topics} />
@@ -51,7 +55,7 @@ class App extends React.Component {
           show={this.state.modalShow}
           onHide={() => this.setModalShow(false)}
         />
-      </>
+      </Container>
     );
   }
 }
