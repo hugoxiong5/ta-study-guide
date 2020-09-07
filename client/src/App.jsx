@@ -26,9 +26,8 @@ class App extends React.Component {
   }
 
   async postTopicToServer(topic) {
-    console.log("topic to post: ", topic);
     try {
-      const response = await fetch("/topics", {
+      await fetch("/topics", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,6 +35,7 @@ class App extends React.Component {
         body: JSON.stringify(topic),
       });
       console.log("post success!");
+      this.getTopicsFromServer();
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +58,6 @@ class App extends React.Component {
     return (
       <Container>
         <h1>Study Guide</h1>
-        <h2>Topics</h2>
         <TopicList topics={this.state.topics} />
         <Button variant="primary" onClick={() => this.setModalShow(true)}>
           Add Topic

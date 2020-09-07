@@ -1,7 +1,11 @@
 import React from "react";
+import {ListGroup} from "react-bootstrap";
 
-const TopicItem = ({ topic }) => {
-  return <li>{topic.title}</li>;
+const TopicCard = ({ topic }) => {
+  return (
+    <ListGroup.Item>{topic.title}</ListGroup.Item>
+  )
 };
 
-export default TopicItem;
+
+export default TopicCard;
