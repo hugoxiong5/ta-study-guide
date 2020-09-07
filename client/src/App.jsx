@@ -45,7 +45,6 @@ class App extends React.Component {
     try {
       const response = await fetch("/topics");
       const topics = await response.json();
-      console.log(topics);
       this.setState({
         topics,
       });

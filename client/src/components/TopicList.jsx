@@ -1,6 +1,6 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import TopicCard from "./TopicItem.jsx";
+import TopicCard from "./TopicCard.jsx";
 
 const TopicList = ({ topics }) => {
   const listItems = topics.map((topic) => {
