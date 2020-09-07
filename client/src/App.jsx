@@ -9,6 +9,23 @@ class App extends React.Component {
     };
   }
 
+  componentWillMount() {
+    this.getTopics();
+  }
+
+  async getTopics() {
+    try {
+      const response = await fetch("/topics");
+      const topics = await response.json();
+      console.log(topics);
+      this.setState({
+        topics,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     return (
       <>
