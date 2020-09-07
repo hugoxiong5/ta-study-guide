@@ -1,0 +1,7 @@
+.card-header {
+  font-weight: bold;
+}
+
+.card-header:hover {
+  cursor: pointer;
+}

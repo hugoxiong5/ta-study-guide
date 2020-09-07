@@ -9,9 +9,7 @@ const TopicList = ({ topics }) => {
   return (
     <div>
       <h2>Topics</h2>
-      <ListGroup>
-        {listItems}
-      </ListGroup>
+      <div>{listItems}</div>
     </div>
   );
 };
