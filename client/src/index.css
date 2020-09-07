@@ -1,7 +1,24 @@
 .card-header {
   font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.card-header:hover {
-  cursor: pointer;
+.ranking {
+  display: flex;
+  width: 200px;
 }
+
+.ranking > div {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+/* .card-header:hover {
+  cursor: pointer;
+} */
