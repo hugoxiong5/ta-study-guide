@@ -26,7 +26,7 @@ const Topic = sequelize.define("Topic", {
 
 const save = async (topic) => {
   const result = await Topic.create({
-    topic: topic.title,
+    title: topic.title,
     text: topic.text,
     order: topic.order,
   });

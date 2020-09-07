@@ -25,14 +25,9 @@ class AddTopicModal extends React.Component {
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit(event) {
     event.preventDefault();
-    // const topicInfo = {
-    //   title: e.target[1].value,
-    //   text: e.target[2].value,
-    // };
-    // console.log(topicInfo);
-    // debugger;
+    this.props.postTopicToServer(this.state);
     this.props.onHide();
   }
 
@@ -57,9 +52,6 @@ class AddTopicModal extends React.Component {
                 value={this.state.title}
                 onChange={this.handleTitleChange}
               />
-              {/* <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text> */}
             </Form.Group>
 
             <Form.Group>
@@ -71,9 +63,6 @@ class AddTopicModal extends React.Component {
                 onChange={this.handleTextChange}
               />
             </Form.Group>
-            {/* <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit">Add Topic</Button>

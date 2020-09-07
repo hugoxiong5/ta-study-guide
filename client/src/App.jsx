@@ -11,10 +11,11 @@ class App extends React.Component {
       topics: [],
       modalShow: false,
     };
+    this.postTopicToServer = this.postTopicToServer.bind(this);
   }
 
   componentDidMount() {
-    this.getTopics();
+    this.getTopicsFromServer();
   }
 
   setModalShow(state) {
@@ -24,11 +25,23 @@ class App extends React.Component {
     });
   }
 
-  async addTopic() {
-
+  async postTopicToServer(topic) {
+    console.log("topic to post: ", topic);
+    try {
+      const response = await fetch("/topics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(topic),
+      });
+      console.log("post success!");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  async getTopics() {
+  async getTopicsFromServer() {
     try {
       const response = await fetch("/topics");
       const topics = await response.json();
@@ -53,6 +66,7 @@ class App extends React.Component {
 
         <AddTopicModal
           show={this.state.modalShow}
+          postTopicToServer={this.postTopicToServer}
           onHide={() => this.setModalShow(false)}
         />
       </Container>
