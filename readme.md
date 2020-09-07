@@ -43,10 +43,10 @@ id, session ID
 
 ## Checklist ##
 
-- [ ] Create React / Webpack skeleton
-- [ ] Create Express skeleton with routes to send study data
-- [ ] Create fake Main Topic study data (JSON)
-- [ ] Render fake study data in React
+- [x] Create React / Webpack skeleton
+- [x] Create Express skeleton with routes to send study data
+- [x] Create fake Main Topic study data (JSON)
+- [x] Render fake study data in React
 - [ ] Set up MySQL database using Sequelize
 - [ ] Create schema for Topic table
 - [ ] Set up Express route to post data and insert into Topic table
