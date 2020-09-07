@@ -1,17 +1,45 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = new Sequelize("test", "root", "", {
   host: "localhost",
   dialect: "mysql",
 });
 
-const init = async () => {
+(async () => {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
+    await sequelize.sync();
+    console.log("The tables for all Models were synchronized!");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
+})();
+
+const Topic = sequelize.define("Topic", {
+  title: DataTypes.STRING,
+  text: DataTypes.STRING,
+  order: DataTypes.INTEGER,
+  subtopic: DataTypes.INTEGER, // foreign key
+  rating: DataTypes.INTEGER, // foreign key
+});
+
+const save = async (topic) => {
+  const result = await Topic.create({
+    topic: topic.title,
+    text: topic.text,
+    order: topic.order,
+  });
+  console.log("new topic inserted: ", result.toJSON());
 };
 
-init();
+const retrieve = async () => {
+  const results = await Topic.findAll();
+  // console.log("All topics:", JSON.stringify(results, null, 2));
+  return results;
+};
+
+module.exports = {
+  save,
+  retrieve,
+};
