@@ -49,7 +49,7 @@ id, session ID
 - [x] Render fake study data in React
 - [x] Set up MySQL database using Sequelize
 - [x] Create schema for Topic table
-- [ ] Set up Express route to post data and insert into Topic table
+- [x] Set up Express route to post data and insert into Topic table
 - [x] Replace fake study data with data from the Database
 - [ ] Add schemas and tables for Sub-Topic, Rating, User
 - [ ] Add Express routes for CRUD to these tables

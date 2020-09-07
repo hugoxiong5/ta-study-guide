@@ -57,7 +57,7 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        <h1>Study Guide</h1>
+        <h1>The Ultimate TA Study Guide</h1>
         <TopicList topics={this.state.topics} />
         <Button variant="primary" onClick={() => this.setModalShow(true)}>
           Add Topic
