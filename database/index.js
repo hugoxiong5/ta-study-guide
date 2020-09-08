@@ -3,8 +3,7 @@ let sequelize = null;
 
 if (process.env.DATABASE_URL) {
   sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: "postgres",
-    protocol: "postgres",
+    dialect: "mysql",
   });
 } else {
   sequelize = new Sequelize("test", "root", "", {
