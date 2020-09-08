@@ -16,8 +16,6 @@ if (process.env.DATABASE_URL) {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
-    await sequelize.sync();
-    // console.log("The tables for all Models were synchronized!");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -32,6 +30,8 @@ const Topic = sequelize.define("topic", {
   subtopic: DataTypes.INTEGER, // foreign key
   rating: DataTypes.INTEGER, // foreign key
 });
+
+Topic.sync();
 
 const save = async (topic) => {
   const result = await Topic.create({
