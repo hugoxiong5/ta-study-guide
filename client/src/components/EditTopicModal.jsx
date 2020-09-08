@@ -28,6 +28,8 @@ class EditTopicModal extends React.Component {
           linkAddress: topic.linkAddress,
           linkLabel: topic.linkLabel,
         },
+        deleteWarning: false,
+        deleteConfirmed: false,
       });
     }
   }
