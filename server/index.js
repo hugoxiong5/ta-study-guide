@@ -40,6 +40,17 @@ app.put("/topics", async (req, res) => {
   }
 });
 
+app.delete("/topics", async (req, res) => {
+  const topic = req.body;
+  try {
+    await database.remove(topic);
+    res.status(200).send();
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
+  }
+});
+
 let port = process.env.PORT || 3000;
 
 app.listen(port, () => {

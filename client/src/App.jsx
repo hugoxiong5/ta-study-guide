@@ -21,7 +21,6 @@ class App extends React.Component {
   }
 
   setAddModalShow = (state) => {
-    // console.log("modal show triggered:", state);
     this.setState({
       addModalShow: state,
     });
@@ -51,7 +50,6 @@ class App extends React.Component {
   };
 
   updateTopic = async (topic) => {
-    console.log("update Topic called");
     try {
       await fetch("/topics", {
         method: "PUT",
@@ -66,6 +64,22 @@ class App extends React.Component {
       console.log(err);
     }
   };
+
+  deleteTopic = async (topic) => {
+    try {
+      await fetch("/topics", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(topic),
+      });
+      console.log("delete success!");
+      this.getTopicsFromServer();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async getTopicsFromServer() {
     try {
@@ -101,6 +115,7 @@ class App extends React.Component {
           show={this.state.editModalShow}
           topic={this.state.topicToEdit}
           updateTopic={this.updateTopic}
+          deleteTopic={this.deleteTopic}
           onHide={() => this.setEditModalShow(false)}
         />
       </Container>

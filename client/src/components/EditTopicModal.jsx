@@ -56,6 +56,11 @@ class EditTopicModal extends React.Component {
     this.props.onHide();
   };
 
+  handleDelete = () => {
+    this.props.deleteTopic(this.state);
+    this.props.onHide();
+  };
+
   render() {
     return (
       <Modal
@@ -110,8 +115,8 @@ class EditTopicModal extends React.Component {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="submit">Edit Topic</Button>
-            <Button>Delete Topic</Button>
+            <Button type="submit">Update Topic</Button>
+            <Button onClick={this.handleDelete}>Delete Topic</Button>
           </Modal.Footer>
         </Form>
       </Modal>
