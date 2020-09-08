@@ -13,7 +13,6 @@ class EditTopicModal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("componentDidUpdate: prevProps: ", prevProps);
     const topic = this.props.topic;
     if (topic.id !== prevProps.topic.id) {
       this.setState({

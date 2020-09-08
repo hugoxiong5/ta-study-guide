@@ -101,7 +101,7 @@ class App extends React.Component {
           show={this.state.editModalShow}
           topic={this.state.topicToEdit}
           updateTopic={this.updateTopic}
-          onHide={() => this.setAddModalShow(false)}
+          onHide={() => this.setEditModalShow(false)}
         />
       </Container>
     );
