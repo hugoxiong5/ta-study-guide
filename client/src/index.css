@@ -36,6 +36,10 @@ h1 {
   color: #343a40;
 }
 
+.fa-edit {
+  color: #343a40;
+}
+
 .card-bottom-menu {
   display: flex;
   justify-content: space-between;
