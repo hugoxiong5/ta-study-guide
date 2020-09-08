@@ -1,9 +1,17 @@
 const { Sequelize, DataTypes } = require("sequelize");
+let sequelize = null;
 
-const sequelize = new Sequelize("test", "root", "", {
-  host: "localhost",
-  dialect: "mysql",
-});
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: "postgres",
+    protocol: "postgres",
+  });
+} else {
+  sequelize = new Sequelize("test", "root", "", {
+    host: "localhost",
+    dialect: "mysql",
+  });
+}
 
 (async () => {
   try {
