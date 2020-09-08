@@ -41,7 +41,18 @@ const retrieve = async () => {
   return results;
 };
 
+const update = async (topic) => {
+  const storedTopic = await Topic.findByPk(topic.id);
+  storedTopic.title = topic.title;
+  storedTopic.text = topic.text;
+  storedTopic.linkAddress = topic.linkAddress;
+  storedTopic.linkLabel = topic.linkLabel;
+  await storedTopic.save();
+  console.log("topic updated: ", storedTopic.toJSON());
+};
+
 module.exports = {
   save,
   retrieve,
+  update,
 };

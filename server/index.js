@@ -20,10 +20,20 @@ app.get("/topics", async (req, res) => {
 
 app.post("/topics", async (req, res) => {
   const topic = req.body;
-  console.log(topic);
   try {
     await database.save(topic);
     res.status(201).send();
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
+  }
+});
+
+app.put("/topics", async (req, res) => {
+  const topic = req.body;
+  try {
+    await database.update(topic);
+    res.status(200).send();
   } catch (err) {
     console.log(err);
     res.status(400).send();

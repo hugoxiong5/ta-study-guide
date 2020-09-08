@@ -5,6 +5,7 @@ class EditTopicModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: null,
       title: "",
       text: "",
       linkAddress: "",
@@ -16,6 +17,7 @@ class EditTopicModal extends React.Component {
     const topic = this.props.topic;
     if (topic.id !== prevProps.topic.id) {
       this.setState({
+        id: topic.id,
         title: topic.title,
         text: topic.text,
         linkAddress: topic.linkAddress,
@@ -23,8 +25,6 @@ class EditTopicModal extends React.Component {
       });
     }
   }
-
-  setCurrentTopic(topic) {}
 
   handleTitleChange = (event) => {
     this.setState({

@@ -54,13 +54,13 @@ class App extends React.Component {
     console.log("update Topic called");
     try {
       await fetch("/topics", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(topic),
       });
-      console.log("post success!");
+      console.log("put/update success!");
       this.getTopicsFromServer();
     } catch (err) {
       console.log(err);
