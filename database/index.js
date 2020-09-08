@@ -25,7 +25,7 @@ if (process.env.DATABASE_URL) {
 
 const Topic = sequelize.define("topic", {
   title: DataTypes.STRING,
-  text: DataTypes.STRING,
+  text: DataTypes.STRING(1234),
   order: DataTypes.INTEGER,
   linkAddress: DataTypes.STRING,
   linkLabel: DataTypes.STRING,

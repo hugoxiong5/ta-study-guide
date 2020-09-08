@@ -75,6 +75,7 @@ class AddTopicModal extends React.Component {
               <Form.Label>Text</Form.Label>
               <Form.Control
                 as="textarea"
+                maxlength="1234"
                 placeholder="Enter more information..."
                 value={this.state.text}
                 onChange={this.handleTextChange}

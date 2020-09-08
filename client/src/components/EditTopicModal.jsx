@@ -101,6 +101,7 @@ class EditTopicModal extends React.Component {
               <Form.Control
                 as="textarea"
                 name="text"
+                maxLength="1234"
                 placeholder="Enter more information..."
                 value={this.state.topic.text}
                 onChange={this.handleTopicInputChange}

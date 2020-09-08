@@ -35,14 +35,16 @@ class App extends React.Component {
 
   createTopic = async (topic) => {
     try {
-      await fetch("/topics", {
+      const response = await fetch("/topics", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(topic),
       });
-      console.log("post success!");
+      if (response.ok) {
+        console.log("post success!");
+      }
       this.getTopicsFromServer();
     } catch (err) {
       console.log(err);
@@ -51,14 +53,16 @@ class App extends React.Component {
 
   updateTopic = async (topic) => {
     try {
-      await fetch("/topics", {
+      const response = await fetch("/topics", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(topic),
       });
-      console.log("put/update success!");
+      if (response.ok) {
+        console.log("put/update success!");
+      }
       this.getTopicsFromServer();
     } catch (err) {
       console.log(err);
@@ -67,14 +71,17 @@ class App extends React.Component {
 
   deleteTopic = async (topic) => {
     try {
-      await fetch("/topics", {
+      const response = await fetch("/topics", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(topic),
       });
-      console.log("delete success!");
+      if (response.ok) {
+        console.log("delete success!");
+      }
+
       this.getTopicsFromServer();
     } catch (err) {
       console.log(err);
@@ -84,6 +91,9 @@ class App extends React.Component {
   async getTopicsFromServer() {
     try {
       const response = await fetch("/topics");
+      if (!response.ok) {
+        return;
+      }
       const topics = await response.json();
       this.setState({
         topics,
