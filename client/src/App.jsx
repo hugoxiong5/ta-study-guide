@@ -11,6 +11,8 @@ class App extends React.Component {
     this.state = {
       topics: [],
       addModalShow: false,
+      editModalShow: false,
+      topicToEdit: {},
     };
   }
 
@@ -25,13 +27,31 @@ class App extends React.Component {
     });
   };
 
-  setEditModalShow = (state) => {
+  setEditModalShow = (state, topic = {}) => {
     this.setState({
       editModalShow: state,
+      topicToEdit: topic,
     });
   };
 
-  postTopicToServer = async (topic) => {
+  createTopic = async (topic) => {
+    try {
+      await fetch("/topics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(topic),
+      });
+      console.log("post success!");
+      this.getTopicsFromServer();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  updateTopic = async (topic) => {
+    console.log("update Topic called");
     try {
       await fetch("/topics", {
         method: "POST",
@@ -65,7 +85,7 @@ class App extends React.Component {
         <h1>The Ultimate TA Study Guide</h1>
         <TopicList
           topics={this.state.topics}
-          clickEditModal={() => this.setEditModalShow(true)}
+          setEditModalShow={this.setEditModalShow}
         />
         <Button variant="primary" onClick={() => this.setAddModalShow(true)}>
           Add Topic
@@ -73,13 +93,14 @@ class App extends React.Component {
 
         <AddTopicModal
           show={this.state.addModalShow}
-          postTopicToServer={this.postTopicToServer}
+          createTopic={this.createTopic}
           onHide={() => this.setAddModalShow(false)}
         />
 
         <EditTopicModal
           show={this.state.editModalShow}
-          postTopicToServer={this.postTopicToServer}
+          topic={this.state.topicToEdit}
+          updateTopic={this.updateTopic}
           onHide={() => this.setAddModalShow(false)}
         />
       </Container>

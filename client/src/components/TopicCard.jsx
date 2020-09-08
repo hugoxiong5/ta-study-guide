@@ -6,7 +6,6 @@ class TopicCard extends React.Component {
     super(props);
     this.state = {
       selectedRating: props.topic.rating,
-      editModalShow: false,
     };
   }
 
@@ -100,7 +99,7 @@ class TopicCard extends React.Component {
                 )}
                 <i
                   className="fas fa-edit"
-                  onClick={this.props.clickEditModal}
+                  onClick={() => this.props.setEditModalShow(true, topic)}
                 ></i>
               </div>
             </Card.Body>

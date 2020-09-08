@@ -7,12 +7,25 @@ class EditTopicModal extends React.Component {
     this.state = {
       title: "",
       text: "",
-      link: {
-        address: "",
-        label: "",
-      },
+      linkAddress: "",
+      linkLabel: "",
     };
   }
+
+  componentDidUpdate(prevProps) {
+    console.log("componentDidUpdate: prevProps: ", prevProps);
+    const topic = this.props.topic;
+    if (topic.id !== prevProps.topic.id) {
+      this.setState({
+        title: topic.title,
+        text: topic.text,
+        linkAddress: topic.linkAddress,
+        linkLabel: topic.linkLabel,
+      });
+    }
+  }
+
+  setCurrentTopic(topic) {}
 
   handleTitleChange = (event) => {
     this.setState({
@@ -40,7 +53,7 @@ class EditTopicModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postTopicToServer(this.state);
+    this.props.updateTopic(this.state);
     this.props.onHide();
   };
 
@@ -49,12 +62,12 @@ class EditTopicModal extends React.Component {
       <Modal
         {...this.props}
         size="lg"
-        aria-labelledby="add-topic-modal"
+        aria-labelledby="edit-topic-modal"
         centered
       >
         <Form onSubmit={this.handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title id="add-topic-modal">Edit Topic</Modal.Title>
+            <Modal.Title id="edit-topic-modal">Edit Topic</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form.Group>
@@ -81,7 +94,7 @@ class EditTopicModal extends React.Component {
               <Form.Label>Link Address</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter link address (http://...)"
+                placeholder="Enter link address (https://...)"
                 value={this.state.linkAddress}
                 onChange={this.handleLinkAddressChange}
               />
@@ -98,7 +111,8 @@ class EditTopicModal extends React.Component {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="submit">Add Topic</Button>
+            <Button type="submit">Edit Topic</Button>
+            <Button>Delete Topic</Button>
           </Modal.Footer>
         </Form>
       </Modal>

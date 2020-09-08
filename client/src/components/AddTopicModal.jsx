@@ -7,10 +7,8 @@ class AddTopicModal extends React.Component {
     this.state = {
       title: "",
       text: "",
-      link: {
-        address: "",
-        label: "",
-      },
+      linkAddress: "",
+      linkLabel: "",
     };
   }
 
@@ -40,7 +38,7 @@ class AddTopicModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postTopicToServer(this.state);
+    this.props.createTopic(this.state);
     this.props.onHide();
   };
 
@@ -81,7 +79,7 @@ class AddTopicModal extends React.Component {
               <Form.Label>Link Address</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter link address (http://...)"
+                placeholder="Enter link address (https://...)"
                 value={this.state.linkAddress}
                 onChange={this.handleLinkAddressChange}
               />
