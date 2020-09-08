@@ -11,7 +11,7 @@ class App extends React.Component {
       topics: [],
       modalShow: false,
     };
-    this.postTopicToServer = this.postTopicToServer.bind(this);
+    // this.postTopicToServer = this.postTopicToServer.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class App extends React.Component {
     });
   }
 
-  async postTopicToServer(topic) {
+  postTopicToServer = async (topic) => {
     try {
       await fetch("/topics", {
         method: "POST",
