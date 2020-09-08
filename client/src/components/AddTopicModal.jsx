@@ -8,9 +8,6 @@ class AddTopicModal extends React.Component {
       title: "",
       text: "",
     };
-    // this.handleTitleChange = this.handleTitleChange.bind(this);
-    // this.handleTextChange = this.handleTextChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleTitleChange = (event) => {

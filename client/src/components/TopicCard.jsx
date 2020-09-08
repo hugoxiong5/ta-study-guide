@@ -5,14 +5,14 @@ class TopicCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRating: 2,
+      selectedRating: props.topic.rating,
     };
     // this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
   handleRatingChange = (event) => {
     this.setState({
-      selectedOption: +event.target.value,
+      selectedRating: +event.target.value,
     });
   };
 
