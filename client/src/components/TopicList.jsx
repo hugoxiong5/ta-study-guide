@@ -10,7 +10,7 @@ const TopicList = ({ topics, setEditModalShow }) => {
   });
   return (
     <div>
-      <h2>Topics</h2>
+      <h3>Topics</h3>
       <div>{listItems}</div>
     </div>
   );

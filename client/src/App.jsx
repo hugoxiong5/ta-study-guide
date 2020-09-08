@@ -79,7 +79,7 @@ class App extends React.Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   async getTopicsFromServer() {
     try {
@@ -97,13 +97,17 @@ class App extends React.Component {
     return (
       <Container>
         <h1>The Ultimate TA Study Guide</h1>
+        <hr />
         <TopicList
           topics={this.state.topics}
           setEditModalShow={this.setEditModalShow}
         />
-        <Button variant="primary" onClick={() => this.setAddModalShow(true)}>
-          Add Topic
-        </Button>
+        <hr />
+        <div className="d-flex justify-content-center m-4">
+          <Button variant="primary" onClick={() => this.setAddModalShow(true)}>
+            Add New Topic
+          </Button>
+        </div>
 
         <AddTopicModal
           show={this.state.addModalShow}

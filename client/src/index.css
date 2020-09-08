@@ -49,3 +49,11 @@ h1 {
 i.fa-edit:hover {
   cursor: pointer;
 }
+
+.delete-checkbox {
+  display: block;
+  font-size: 0.8rem;
+  color: #dc3545;
+  text-align: right;
+  padding: 0px 15px;
+}
