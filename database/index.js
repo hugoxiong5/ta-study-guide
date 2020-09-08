@@ -51,8 +51,15 @@ const update = async (topic) => {
   console.log("topic updated: ", storedTopic.toJSON());
 };
 
+const remove = async (topic) => {
+  const storedTopic = await Topic.findByPk(topic.id);
+  await storedTopic.destroy();
+  console.log("topic deleted: ", storedTopic.toJSON());
+};
+
 module.exports = {
   save,
   retrieve,
   update,
+  remove,
 };

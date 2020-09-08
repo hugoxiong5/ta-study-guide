@@ -91,7 +91,7 @@ class TopicCard extends React.Component {
               <Card.Text>{topic.text}</Card.Text>
               <div className="card-bottom-menu">
                 {topic.linkAddress ? (
-                  <Card.Link href={topic.linkAddress}>
+                  <Card.Link target="_blank" href={topic.linkAddress}>
                     {topic.linkLabel ? topic.linkLabel : "Link"}
                   </Card.Link>
                 ) : (
