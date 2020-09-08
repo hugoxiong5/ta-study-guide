@@ -37,7 +37,11 @@ class TopicCard extends React.Component {
       <Accordion className="m-3">
         <Card bg={color} text={color === "light" ? "dark" : "white"}>
           <Card.Header>
-            <Accordion.Toggle as={Button} variant="light" eventKey={topic.id}>
+            <Accordion.Toggle
+              as={Button}
+              variant={color === "light" ? "secondary" : "light"}
+              eventKey={topic.id}
+            >
               {topic.title}
             </Accordion.Toggle>
             <div className="rating">
@@ -86,7 +90,11 @@ class TopicCard extends React.Component {
           <Accordion.Collapse eventKey={topic.id}>
             <Card.Body>
               <Card.Text>{topic.text}</Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
+              {topic.linkAddress ? (
+                <Card.Link href={topic.linkAddress}>
+                  {topic.linkLabel ? topic.linkLabel : "Link"}
+                </Card.Link>
+              ) : null}
             </Card.Body>
           </Accordion.Collapse>
         </Card>

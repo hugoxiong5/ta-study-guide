@@ -7,6 +7,10 @@ class AddTopicModal extends React.Component {
     this.state = {
       title: "",
       text: "",
+      link: {
+        address: "",
+        label: "",
+      },
     };
   }
 
@@ -19,6 +23,18 @@ class AddTopicModal extends React.Component {
   handleTextChange = (event) => {
     this.setState({
       text: event.target.value,
+    });
+  };
+
+  handleLinkAddressChange = (event) => {
+    this.setState({
+      linkAddress: event.target.value,
+    });
+  };
+
+  handleLinkLabelChange = (event) => {
+    this.setState({
+      linkLabel: event.target.value,
     });
   };
 
@@ -58,6 +74,26 @@ class AddTopicModal extends React.Component {
                 placeholder="Enter more information..."
                 value={this.state.text}
                 onChange={this.handleTextChange}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Link Address</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter link address (http://...)"
+                value={this.state.linkAddress}
+                onChange={this.handleLinkAddressChange}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Link Label</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter display text for link..."
+                value={this.state.linkLabel}
+                onChange={this.handleLinkLabelChange}
               />
             </Form.Group>
           </Modal.Body>

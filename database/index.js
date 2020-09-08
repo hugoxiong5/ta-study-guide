@@ -20,6 +20,8 @@ const Topic = sequelize.define("topic", {
   title: DataTypes.STRING,
   text: DataTypes.STRING,
   order: DataTypes.INTEGER,
+  linkAddress: DataTypes.STRING,
+  linkLabel: DataTypes.STRING,
   subtopic: DataTypes.INTEGER, // foreign key
   rating: DataTypes.INTEGER, // foreign key
 });
@@ -28,8 +30,8 @@ const save = async (topic) => {
   const result = await Topic.create({
     title: topic.title,
     text: topic.text,
-    order: topic.order,
-    rating: Math.round(Math.random() * 3),
+    linkAddress: topic.linkAddress,
+    linkLabel: topic.linkLabel,
   });
   console.log("new topic inserted: ", result.toJSON());
 };
