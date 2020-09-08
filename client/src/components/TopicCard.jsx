@@ -19,7 +19,7 @@ class TopicCard extends React.Component {
   render() {
     const topic = this.props.topic;
     let color = "light";
-    switch (topic.rating) {
+    switch (this.state.selectedRating) {
       case 0:
         color = "danger";
         break;
@@ -37,11 +37,7 @@ class TopicCard extends React.Component {
       <Accordion className="m-3">
         <Card bg={color} text={color === "light" ? "dark" : "white"}>
           <Card.Header>
-            <Accordion.Toggle
-              as={Button}
-              variant="secondary"
-              eventKey={topic.id}
-            >
+            <Accordion.Toggle as={Button} variant="light" eventKey={topic.id}>
               {topic.title}
             </Accordion.Toggle>
             <div className="rating">

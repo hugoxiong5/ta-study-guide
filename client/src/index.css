@@ -19,10 +19,13 @@
   align-items: center;
 }
 
-.border-danger {
-  border-width: 2px;
+.card-body {
+  background-color: white;
 }
 
+.card-text {
+  color: #343a40;
+}
 /* .card-header:hover {
   cursor: pointer;
 } */
