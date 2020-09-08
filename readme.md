@@ -52,6 +52,6 @@ id, session ID
 - [x] Set up Express route to post data and insert into Topic table
 - [x] Replace fake study data with data from the Database
 - [ ] Add schemas and tables for Sub-Topic, Rating, User
-- [ ] Add Express routes for CRUD to these tables
-- [ ] Create a form for CRUD API, users can create/edit/delete info from the tables
+- [x] Add Express routes for CRUD to these tables
+- [x] Create a form for CRUD API, users can create/edit/delete info from the tables
 - [ ] Make ratings work, store in database (only one global user for now)
