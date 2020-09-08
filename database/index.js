@@ -55,6 +55,7 @@ const update = async (topic) => {
   storedTopic.linkAddress = topic.linkAddress;
   storedTopic.linkLabel = topic.linkLabel;
   await storedTopic.save();
+  await storedTopic.reload();
   console.log("topic updated: ", storedTopic.toJSON());
 };
 
