@@ -6,12 +6,12 @@
   align-items: center;
 }
 
-.ranking {
+.rating {
   display: flex;
   width: 200px;
 }
 
-.ranking > div {
+.rating > div {
   display: flex;
   flex-direction: column;
   flex-basis: 25%;

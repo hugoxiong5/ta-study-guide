@@ -16,7 +16,7 @@ const sequelize = new Sequelize("test", "root", "", {
   }
 })();
 
-const Topic = sequelize.define("Topic", {
+const Topic = sequelize.define("topic", {
   title: DataTypes.STRING,
   text: DataTypes.STRING,
   order: DataTypes.INTEGER,
@@ -29,6 +29,7 @@ const save = async (topic) => {
     title: topic.title,
     text: topic.text,
     order: topic.order,
+    rating: Math.round(Math.random() * 3),
   });
   console.log("new topic inserted: ", result.toJSON());
 };

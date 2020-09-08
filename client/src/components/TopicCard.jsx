@@ -5,12 +5,12 @@ class TopicCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRank: 2,
+      selectedRating: 2,
     };
     // this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
-  handleRankChange = (event) => {
+  handleRatingChange = (event) => {
     this.setState({
       selectedOption: +event.target.value,
     });
@@ -25,14 +25,14 @@ class TopicCard extends React.Component {
             <Accordion.Toggle as={Button} variant="success" eventKey={topic.id}>
               {topic.title}
             </Accordion.Toggle>
-            <div className="ranking">
+            <div className="rating">
               <div>
                 <input
                   type="radio"
                   name={topic.id}
                   value="3"
-                  checked={this.state.selectedRank === 3}
-                  onChange={this.handleRankChange}
+                  checked={this.state.selectedRating === 3}
+                  onChange={this.handleRatingChange}
                 />
                 <label>easy</label>
               </div>
@@ -41,8 +41,8 @@ class TopicCard extends React.Component {
                   type="radio"
                   name={topic.id}
                   value="2"
-                  checked={this.state.selectedRank === 2}
-                  onChange={this.handleRankChange}
+                  checked={this.state.selectedRating === 2}
+                  onChange={this.handleRatingChange}
                 />
                 <label>got it</label>
               </div>
@@ -51,8 +51,8 @@ class TopicCard extends React.Component {
                   type="radio"
                   name={topic.id}
                   value="1"
-                  checked={this.state.selectedRank === 1}
-                  onChange={this.handleRankChange}
+                  checked={this.state.selectedRating === 1}
+                  onChange={this.handleRatingChange}
                 />
                 <label>so-so</label>
               </div>
@@ -61,8 +61,8 @@ class TopicCard extends React.Component {
                   type="radio"
                   name={topic.id}
                   value="0"
-                  checked={this.state.selectedRank === 0}
-                  onChange={this.handleRankChange}
+                  checked={this.state.selectedRating === 0}
+                  onChange={this.handleRatingChange}
                 />
                 <label>hard</label>
               </div>
