@@ -5,31 +5,31 @@ class AddTopicModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: null,
-      text: null,
+      title: "",
+      text: "",
     };
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleTitleChange = this.handleTitleChange.bind(this);
+    // this.handleTextChange = this.handleTextChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleTitleChange(event) {
+  handleTitleChange = (event) => {
     this.setState({
       title: event.target.value,
     });
-  }
+  };
 
-  handleTextChange(event) {
+  handleTextChange = (event) => {
     this.setState({
       text: event.target.value,
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.postTopicToServer(this.state);
     this.props.onHide();
-  }
+  };
 
   render() {
     return (
