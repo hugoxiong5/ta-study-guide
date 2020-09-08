@@ -7,7 +7,6 @@ class TopicCard extends React.Component {
     this.state = {
       selectedRating: props.topic.rating,
     };
-    // this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
   handleRatingChange = (event) => {
@@ -90,11 +89,19 @@ class TopicCard extends React.Component {
           <Accordion.Collapse eventKey={topic.id}>
             <Card.Body>
               <Card.Text>{topic.text}</Card.Text>
-              {topic.linkAddress ? (
-                <Card.Link href={topic.linkAddress}>
-                  {topic.linkLabel ? topic.linkLabel : "Link"}
-                </Card.Link>
-              ) : null}
+              <div className="card-bottom-menu">
+                {topic.linkAddress ? (
+                  <Card.Link href={topic.linkAddress}>
+                    {topic.linkLabel ? topic.linkLabel : "Link"}
+                  </Card.Link>
+                ) : (
+                  <div></div>
+                )}
+                <i
+                  className="fas fa-edit"
+                  onClick={this.props.clickEditModal}
+                ></i>
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

@@ -38,7 +38,6 @@ const save = async (topic) => {
 
 const retrieve = async () => {
   const results = await Topic.findAll();
-  // console.log("All topics:", JSON.stringify(results, null, 2));
   return results;
 };
 
