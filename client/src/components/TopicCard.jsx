@@ -44,7 +44,7 @@ class TopicCard extends React.Component {
             >
               {topic.title}
             </Accordion.Toggle>
-            <div className="rating">
+            <div className="rating mt-2 mt-sm-0">
               <div>
                 <input
                   type="radio"
@@ -101,10 +101,6 @@ class TopicCard extends React.Component {
       </Accordion>
     );
   }
-}
-
-function alertClicked() {
-  // alert("You clicked a ListGroupItem");
 }
 
 export default TopicCard;
