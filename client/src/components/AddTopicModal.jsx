@@ -66,6 +66,7 @@ class AddTopicModal extends React.Component {
               <Form.Control
                 type="text"
                 placeholder="Enter title"
+                maxlength="255"
                 value={this.state.title}
                 onChange={this.handleTitleChange}
               />
@@ -86,6 +87,7 @@ class AddTopicModal extends React.Component {
               <Form.Label>Link Address</Form.Label>
               <Form.Control
                 type="text"
+                maxlength="255"
                 placeholder="Enter link address (https://...)"
                 value={this.state.linkAddress}
                 onChange={this.handleLinkAddressChange}
@@ -96,6 +98,7 @@ class AddTopicModal extends React.Component {
               <Form.Label>Link Label</Form.Label>
               <Form.Control
                 type="text"
+                maxlength="255"
                 placeholder="Enter display text for link..."
                 value={this.state.linkLabel}
                 onChange={this.handleLinkLabelChange}
