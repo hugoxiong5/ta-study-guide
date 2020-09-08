@@ -18,11 +18,30 @@ class TopicCard extends React.Component {
 
   render() {
     const topic = this.props.topic;
+    let color = "light";
+    switch (topic.rating) {
+      case 0:
+        color = "danger";
+        break;
+      case 1:
+        color = "warning";
+        break;
+      case 2:
+        color = "info";
+        break;
+      case 3:
+        color = "success";
+        break;
+    }
     return (
       <Accordion className="m-3">
-        <Card>
+        <Card bg={color} text={color === "light" ? "dark" : "white"}>
           <Card.Header>
-            <Accordion.Toggle as={Button} variant="success" eventKey={topic.id}>
+            <Accordion.Toggle
+              as={Button}
+              variant="secondary"
+              eventKey={topic.id}
+            >
               {topic.title}
             </Accordion.Toggle>
             <div className="rating">
@@ -72,9 +91,6 @@ class TopicCard extends React.Component {
             <Card.Body>
               <Card.Text>{topic.text}</Card.Text>
               <Card.Link href="#">Card Link</Card.Link>
-              {/* <Card.Link href="#">Another Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link> */}
             </Card.Body>
           </Accordion.Collapse>
         </Card>

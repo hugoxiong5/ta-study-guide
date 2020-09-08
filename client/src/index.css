@@ -1,5 +1,5 @@
 .card-header {
-  font-weight: bold;
+  /* font-weight: bold; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -17,6 +17,10 @@
   flex-basis: 25%;
   /* justify-content: center; */
   align-items: center;
+}
+
+.border-danger {
+  border-width: 2px;
 }
 
 /* .card-header:hover {
