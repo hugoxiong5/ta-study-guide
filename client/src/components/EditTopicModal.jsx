@@ -65,11 +65,11 @@ class EditTopicModal extends React.Component {
       return;
     }
     this.props.deleteTopic(this.state.topic);
+    this.props.onHide();
     this.setState({
       deleteWarning: false,
       deleteConfirmed: false,
     });
-    this.props.onHide();
   };
 
   render() {

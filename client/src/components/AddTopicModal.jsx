@@ -40,6 +40,12 @@ class AddTopicModal extends React.Component {
     event.preventDefault();
     this.props.createTopic(this.state);
     this.props.onHide();
+    this.setState({
+      title: "",
+      text: "",
+      linkAddress: "",
+      linkLabel: "",
+    });
   };
 
   render() {
