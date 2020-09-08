@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
-class AddTopicModal extends React.Component {
+class EditTopicModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,7 +54,7 @@ class AddTopicModal extends React.Component {
       >
         <Form onSubmit={this.handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title id="add-topic-modal">Add New Topic</Modal.Title>
+            <Modal.Title id="add-topic-modal">Edit Topic</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form.Group>
@@ -106,4 +106,4 @@ class AddTopicModal extends React.Component {
   }
 }
 
-export default AddTopicModal;
+export default EditTopicModal;

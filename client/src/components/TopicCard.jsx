@@ -6,6 +6,7 @@ class TopicCard extends React.Component {
     super(props);
     this.state = {
       selectedRating: props.topic.rating,
+      editModalShow: false,
     };
   }
 

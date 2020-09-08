@@ -11,7 +11,6 @@ class App extends React.Component {
     this.state = {
       topics: [],
       addModalShow: false,
-      editModalShow: false,
     };
   }
 
