@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Accordion, Button } from "react-bootstrap";
+import { Card, Accordion, Button, ListGroup } from "react-bootstrap";
 
 class TopicCard extends React.Component {
   constructor(props) {
@@ -34,6 +34,9 @@ class TopicCard extends React.Component {
         color = "success";
         break;
     }
+    const listItems = topic.checklist.map((item, index) => {
+      return <ListGroup.Item key={index}>{item}</ListGroup.Item>;
+    });
     return (
       <Accordion className="m-3">
         <Card bg={color} text={color === "light" ? "dark" : "white"}>
@@ -89,22 +92,27 @@ class TopicCard extends React.Component {
             </div>
           </Card.Header>
           <Accordion.Collapse eventKey={topic.id}>
-            <Card.Body>
-              <Card.Text>{topic.text}</Card.Text>
-              <div className="card-bottom-menu">
-                {topic.linkAddress ? (
-                  <Card.Link target="_blank" href={topic.linkAddress}>
-                    {topic.linkLabel ? topic.linkLabel : "Link"}
-                  </Card.Link>
-                ) : (
-                  <div></div>
-                )}
-                <i
-                  className="fas fa-edit"
-                  onClick={() => this.props.setEditModalShow(true, topic)}
-                ></i>
-              </div>
-            </Card.Body>
+            <>
+              <Card.Body>
+                <Card.Text>{topic.text}</Card.Text>
+                <div className="card-bottom-menu">
+                  {topic.linkAddress ? (
+                    <Card.Link target="_blank" href={topic.linkAddress}>
+                      {topic.linkLabel ? topic.linkLabel : "Link"}
+                    </Card.Link>
+                  ) : (
+                    <div></div>
+                  )}
+                  <i
+                    className="fas fa-edit"
+                    onClick={() => this.props.setEditModalShow(true, topic)}
+                  ></i>
+                </div>
+              </Card.Body>
+              <Card.Footer>
+                <ListGroup variant="flush">{listItems}</ListGroup>;
+              </Card.Footer>
+            </>
           </Accordion.Collapse>
         </Card>
       </Accordion>
