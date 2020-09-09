@@ -11,9 +11,13 @@ app.use(cookieParser());
 // session authentication: no mount path, executed every time the app receives a request
 // create a cookie if one doesn't exist or it's invalid
 app.use(async (req, res, next) => {
+  req.sessionRatings = {};
   try {
     const session = await db.Sessions.retrieve(req.cookies.session);
     req.sessionRatings = JSON.parse(session.ratings);
+    // if (session.ratings) {
+    //   req.sessionRatings =
+    // }
   } catch {
     try {
       res.clearCookie("session");
@@ -37,11 +41,11 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.get("/topics", async (req, res) => {
   try {
     const topics = await db.Topics.retrieve();
-    console.log("sessionRatings: ", req.sessionRatings);
     const topicsWithRatings = topics.map((topic) => {
       let topicObj = topic.toJSON();
-      topicObj.rating = req.sessionRatings[topicObj.id];
-      console.log(topicObj);
+      topicObj.rating = req.sessionRatings[topicObj.id]
+        ? req.sessionRatings[topicObj.id]
+        : null;
       return topicObj;
     });
     res.send(topicsWithRatings);
