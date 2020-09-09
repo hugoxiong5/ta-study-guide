@@ -15,12 +15,8 @@ app.use(async (req, res, next) => {
   try {
     const session = await db.Sessions.retrieve(req.cookies.session);
     req.sessionRatings = JSON.parse(session.ratings);
-    // if (session.ratings) {
-    //   req.sessionRatings =
-    // }
   } catch {
     try {
-      res.clearCookie("session");
       const session = await db.Sessions.save();
       res.cookie("session", session.cookie, { maxAge: 600000000 });
     } catch (err) {
