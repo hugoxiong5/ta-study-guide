@@ -44,6 +44,18 @@ const remove = async (topic) => {
   console.log("topic deleted: ", storedTopic.toJSON());
 };
 
+// fix the missing checklist for Topics
+const fixData = async () => {
+  const topics = await retrieve();
+  topics.forEach((topic) => {
+    topic.checklist = JSON.stringify([]);
+    topic.save();
+    console.log(topic);
+  });
+};
+
+fixData();
+
 module.exports = {
   save,
   retrieve,
