@@ -14,7 +14,6 @@ class TopicCard extends React.Component {
       selectedRating: +event.target.value,
     });
     const rating = { [this.props.topic.id]: +event.target.value };
-    // console.log(rating);
     this.props.updateRating(rating);
   };
 

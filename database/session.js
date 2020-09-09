@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const Session = sequelize.define("session", {
   cookie: DataTypes.STRING,
   ratings: {
-    type: DataTypes.JSON,
+    type: DataTypes.TEXT,
     defaultValue: "{}",
   },
 });
