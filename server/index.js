@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 
-const database = require("../database/index.js");
+const db = require("../database/index.js");
 
 const app = express();
 
@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.get("/topics", async (req, res) => {
   try {
-    const topics = await database.retrieveTopics();
+    const topics = await db.Topics.retrieve();
     res.send(topics);
   } catch (err) {
     console.log(err);
@@ -21,7 +21,7 @@ app.get("/topics", async (req, res) => {
 app.post("/topics", async (req, res) => {
   const topic = req.body;
   try {
-    await database.saveTopic(topic);
+    await db.Topics.save(topic);
     res.status(201).send();
   } catch (err) {
     console.log(err);
@@ -32,7 +32,7 @@ app.post("/topics", async (req, res) => {
 app.put("/topics", async (req, res) => {
   const topic = req.body;
   try {
-    await database.updateTopic(topic);
+    await db.Topics.update(topic);
     res.status(200).send();
   } catch (err) {
     console.log(err);
@@ -43,7 +43,7 @@ app.put("/topics", async (req, res) => {
 app.delete("/topics", async (req, res) => {
   const topic = req.body;
   try {
-    await database.removeTopic(topic);
+    await db.Topics.remove(topic);
     res.status(200).send();
   } catch (err) {
     console.log(err);
