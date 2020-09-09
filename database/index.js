@@ -18,8 +18,13 @@ const Topic = sequelize.define("topic", {
   order: DataTypes.INTEGER,
   linkAddress: DataTypes.STRING,
   linkLabel: DataTypes.STRING,
-  subtopic: DataTypes.INTEGER, // foreign key
-  rating: DataTypes.INTEGER, // foreign key
+  main: DataTypes.BOOLEAN,
+  list: DataTypes.INTEGER, // id of the "main" topic it's associated with (MAKE THIS INTO A SUBLIST???)
+});
+
+const Session = sequelize.define("session", {
+  ratings: DataTypes.JSON, // make this JSON for now, easier?
+  cookie: DataTypes.STRING,
 });
 
 (async () => {
@@ -32,7 +37,9 @@ const Topic = sequelize.define("topic", {
   }
 })();
 
-const save = async (topic) => {
+/* TOPIC API: */
+
+const saveTopic = async (topic) => {
   const result = await Topic.create({
     title: topic.title,
     text: topic.text,
@@ -42,12 +49,12 @@ const save = async (topic) => {
   console.log("new topic inserted: ", result.toJSON());
 };
 
-const retrieve = async () => {
+const retrieveTopics = async () => {
   const results = await Topic.findAll();
   return results;
 };
 
-const update = async (topic) => {
+const updateTopic = async (topic) => {
   const storedTopic = await Topic.findByPk(topic.id);
   storedTopic.title = topic.title;
   storedTopic.text = topic.text;
@@ -58,15 +65,30 @@ const update = async (topic) => {
   console.log("topic updated: ", storedTopic.toJSON());
 };
 
-const remove = async (topic) => {
+const removeTopic = async (topic) => {
   const storedTopic = await Topic.findByPk(topic.id);
   await storedTopic.destroy();
   console.log("topic deleted: ", storedTopic.toJSON());
 };
 
+/* RATING API: */
+
+const saveRating = async (topic) => {
+  const result = await Topic.create({
+    title: topic.title,
+    text: topic.text,
+    linkAddress: topic.linkAddress,
+    linkLabel: topic.linkLabel,
+  });
+  console.log("new topic inserted: ", result.toJSON());
+};
+
 module.exports = {
-  save,
-  retrieve,
-  update,
-  remove,
+  saveTopic,
+  retrieveTopics,
+  updateTopic,
+  removeTopic,
+  saveRating,
+  // updateRating,
+  // retrieveRatings,
 };
