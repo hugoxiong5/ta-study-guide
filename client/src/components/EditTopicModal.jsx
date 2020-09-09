@@ -90,7 +90,7 @@ class EditTopicModal extends React.Component {
               <Form.Control
                 type="text"
                 name="title"
-                maxlength="255"
+                maxLength="255"
                 placeholder="Enter title"
                 value={this.state.topic.title}
                 onChange={this.handleTopicInputChange}
@@ -113,7 +113,7 @@ class EditTopicModal extends React.Component {
               <Form.Label>Link Address</Form.Label>
               <Form.Control
                 type="text"
-                maxlength="255"
+                maxLength="255"
                 name="linkAddress"
                 placeholder="Enter link address (https://...)"
                 value={this.state.topic.linkAddress}
@@ -125,7 +125,7 @@ class EditTopicModal extends React.Component {
               <Form.Label>Link Label</Form.Label>
               <Form.Control
                 type="text"
-                maxlength="255"
+                maxLength="255"
                 name="linkLabel"
                 placeholder="Enter display text for link..."
                 value={this.state.topic.linkLabel}

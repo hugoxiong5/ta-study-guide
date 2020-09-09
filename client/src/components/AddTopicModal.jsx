@@ -64,7 +64,7 @@ class AddTopicModal extends React.Component {
           <FormControl
             type="text"
             data-index={index}
-            maxlength="255"
+            maxLength="255"
             placeholder="Enter checklist item..."
             value={item}
             onChange={this.handleChecklistChange}
@@ -99,7 +99,7 @@ class AddTopicModal extends React.Component {
                 type="text"
                 name="title"
                 placeholder="Enter title"
-                maxlength="255"
+                maxLength="255"
                 value={this.state.title}
                 onChange={this.handleTopicInputChange}
               />
@@ -110,7 +110,7 @@ class AddTopicModal extends React.Component {
               <Form.Control
                 as="textarea"
                 name="text"
-                maxlength="1234"
+                maxLength="1234"
                 placeholder="Enter more information..."
                 value={this.state.text}
                 onChange={this.handleTopicInputChange}
@@ -122,7 +122,7 @@ class AddTopicModal extends React.Component {
               <Form.Control
                 type="text"
                 name="linkAddress"
-                maxlength="255"
+                maxLength="255"
                 placeholder="Enter link address (https://...)"
                 value={this.state.linkAddress}
                 onChange={this.handleTopicInputChange}
@@ -134,7 +134,7 @@ class AddTopicModal extends React.Component {
               <Form.Control
                 type="text"
                 name="linkLabel"
-                maxlength="255"
+                maxLength="255"
                 placeholder="Enter display text for link..."
                 value={this.state.linkLabel}
                 onChange={this.handleTopicInputChange}
