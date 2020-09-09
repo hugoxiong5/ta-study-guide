@@ -32,7 +32,7 @@ const update = async (topic) => {
   storedTopic.text = topic.text;
   storedTopic.linkAddress = topic.linkAddress;
   storedTopic.linkLabel = topic.linkLabel;
-  storedTopic.checklist = JSON.stringify(topic.checklistlist);
+  storedTopic.checklist = JSON.stringify(topic.checklist);
   await storedTopic.save();
   await storedTopic.reload();
   console.log("topic updated: ", storedTopic.toJSON());

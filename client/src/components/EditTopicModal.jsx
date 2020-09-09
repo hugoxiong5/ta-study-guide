@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, InputGroup, FormControl } from "react-bootstrap";
 
 class EditTopicModal extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class EditTopicModal extends React.Component {
         text: "",
         linkAddress: "",
         linkLabel: "",
+        checklist: [],
       },
       deleteWarning: false,
       deleteConfirmed: false,
@@ -27,6 +28,7 @@ class EditTopicModal extends React.Component {
           text: topic.text,
           linkAddress: topic.linkAddress,
           linkLabel: topic.linkLabel,
+          checklist: topic.checklist,
         },
         deleteWarning: false,
         deleteConfirmed: false,
@@ -72,7 +74,55 @@ class EditTopicModal extends React.Component {
     });
   };
 
+  addChecklistItem = () => {
+    const updatedTopic = { ...this.state.topic };
+    updatedTopic.checklist.push("");
+    this.setState({
+      topic: updatedTopic,
+    });
+  };
+
+  deleteChecklistItem = (index) => {
+    const updatedTopic = { ...this.state.topic };
+    updatedTopic.checklist.splice(index, 1);
+    this.setState({
+      topic: updatedTopic,
+    });
+  };
+
+  handleChecklistChange = (event) => {
+    const updatedTopic = { ...this.state.topic };
+    const index = +event.target.dataset.index;
+    updatedTopic.checklist.splice(index, 1, event.target.value);
+    this.setState({
+      topic: updatedTopic,
+    });
+  };
+
   render() {
+    const checklistItems = this.state.topic.checklist.map((item, index) => {
+      return (
+        <InputGroup className="mb-3" key={index}>
+          <FormControl
+            type="text"
+            data-index={index}
+            maxLength="255"
+            placeholder="Enter checklist item..."
+            value={item}
+            onChange={this.handleChecklistChange}
+          />
+          <InputGroup.Append>
+            <Button
+              variant="outline-danger"
+              onClick={() => this.deleteChecklistItem(index)}
+            >
+              x
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+      );
+    });
+
     return (
       <Modal
         {...this.props}
@@ -132,6 +182,12 @@ class EditTopicModal extends React.Component {
                 onChange={this.handleTopicInputChange}
               />
             </Form.Group>
+
+            <h5>Checklist:</h5>
+            {checklistItems}
+            <Button onClick={this.addChecklistItem} variant="outline-secondary">
+              Add Item
+            </Button>
           </Modal.Body>
           {this.state.deleteWarning ? (
             <Form.Group className="delete-checkbox">
