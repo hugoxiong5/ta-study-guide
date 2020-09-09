@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, InputGroup, FormControl } from "react-bootstrap";
 
 class AddTopicModal extends React.Component {
   constructor(props) {
@@ -28,10 +28,59 @@ class AddTopicModal extends React.Component {
       text: "",
       linkAddress: "",
       linkLabel: "",
+      checklist: [],
+    });
+  };
+
+  addChecklistItem = () => {
+    const newList = [...this.state.checklist];
+    newList.push("");
+    this.setState({
+      checklist: newList,
+    });
+  };
+
+  deleteChecklistItem = (index) => {
+    const newList = [...this.state.checklist];
+    newList.splice(index, 1);
+    this.setState({
+      checklist: newList,
+    });
+  };
+
+  handleChecklistChange = (event) => {
+    const newList = [...this.state.checklist];
+    const index = +event.target.dataset.index;
+    newList.splice(index, 1, event.target.value);
+    this.setState({
+      checklist: newList,
     });
   };
 
   render() {
+    const checklistItems = this.state.checklist.map((item, index) => {
+      return (
+        <InputGroup className="mb-3" key={index}>
+          <FormControl
+            type="text"
+            data-index={index}
+            maxlength="255"
+            placeholder="Enter checklist item..."
+            value={item}
+            onChange={this.handleChecklistChange}
+          />
+          <InputGroup.Append>
+            <Button
+              variant="outline-danger"
+              onClick={() => this.deleteChecklistItem(index)}
+            >
+              x
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+      );
+    });
+
     return (
       <Modal
         {...this.props}
@@ -93,15 +142,10 @@ class AddTopicModal extends React.Component {
             </Form.Group>
 
             <h5>Checklist:</h5>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                maxlength="255"
-                placeholder="Add checklist item..."
-                value={this.state.linkLabel}
-                onChange={this.handleChecklistChange}
-              />
-            </Form.Group>
+            {checklistItems}
+            <Button onClick={this.addChecklistItem} variant="outline-secondary">
+              Add Item
+            </Button>
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit">Add Topic</Button>
