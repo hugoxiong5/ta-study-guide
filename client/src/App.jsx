@@ -42,8 +42,8 @@ class App extends React.Component {
         },
         body: JSON.stringify(topic),
       });
-      if (response.ok) {
-        console.log("post success!");
+      if (!response.ok) {
+        return;
       }
       this.getTopicsFromServer();
     } catch (err) {
@@ -60,8 +60,8 @@ class App extends React.Component {
         },
         body: JSON.stringify(topic),
       });
-      if (response.ok) {
-        console.log("put/update success!");
+      if (!response.ok) {
+        return;
       }
       this.getTopicsFromServer();
     } catch (err) {
@@ -78,17 +78,30 @@ class App extends React.Component {
         },
         body: JSON.stringify(topic),
       });
-      if (response.ok) {
-        console.log("delete success!");
+      if (!response.ok) {
+        return;
       }
-
       this.getTopicsFromServer();
     } catch (err) {
       console.log(err);
     }
   };
 
-  async getTopicsFromServer() {
+  updateRating = async (rating) => {
+    try {
+      const response = await fetch("/ratings", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rating),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getTopicsFromServer = async () => {
     try {
       const response = await fetch("/topics");
       if (!response.ok) {
@@ -101,7 +114,7 @@ class App extends React.Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   render() {
     return (
@@ -110,6 +123,7 @@ class App extends React.Component {
         <hr />
         <TopicList
           topics={this.state.topics}
+          updateRating={this.updateRating}
           setEditModalShow={this.setEditModalShow}
         />
         <hr />

@@ -43,9 +43,9 @@ app.get("/topics", async (req, res) => {
     const topics = await db.Topics.retrieve();
     const topicsWithRatings = topics.map((topic) => {
       let topicObj = topic.toJSON();
-      topicObj.rating = req.sessionRatings[topicObj.id]
-        ? req.sessionRatings[topicObj.id]
-        : null;
+      if (req.sessionRatings[topicObj.id] !== undefined) {
+        topicObj.rating = req.sessionRatings[topicObj.id];
+      }
       return topicObj;
     });
     res.send(topicsWithRatings);

@@ -6,7 +6,7 @@ const Session = sequelize.define("session", {
   cookie: DataTypes.STRING,
   ratings: {
     type: DataTypes.JSON,
-    defaultValue: {},
+    defaultValue: "{}",
   },
 });
 
