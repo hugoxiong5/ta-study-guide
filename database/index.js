@@ -31,7 +31,7 @@ const Session = sequelize.define("session", {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -73,7 +73,7 @@ const removeTopic = async (topic) => {
 
 /* RATING API: */
 
-const saveRating = async (topic) => {
+const saveRating = async (rating, topicId) => {
   const result = await Topic.create({
     title: topic.title,
     text: topic.text,
