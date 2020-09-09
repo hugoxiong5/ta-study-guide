@@ -116,7 +116,7 @@ class TopicCard extends React.Component {
                     onClick={() => this.props.setEditModalShow(true, topic)}
                   ></i>
                 </div>
-                {listItems && listItems.length > 1 ? (
+                {listItems && listItems.length > 0 ? (
                   <>
                     <hr />
                     <ListGroup as="ul" variant="flush">
