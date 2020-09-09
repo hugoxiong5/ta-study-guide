@@ -3,9 +3,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 
 const db = require("../database/index.js");
-const { nextTick } = require("process");
-
-// var session = require("express-session");
 
 const app = express();
 
