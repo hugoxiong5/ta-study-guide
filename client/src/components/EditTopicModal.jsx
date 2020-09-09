@@ -100,28 +100,31 @@ class EditTopicModal extends React.Component {
   };
 
   render() {
-    const checklistItems = this.state.topic.checklist.map((item, index) => {
-      return (
-        <InputGroup className="mb-3" key={index}>
-          <FormControl
-            type="text"
-            data-index={index}
-            maxLength="255"
-            placeholder="Enter checklist item..."
-            value={item}
-            onChange={this.handleChecklistChange}
-          />
-          <InputGroup.Append>
-            <Button
-              variant="outline-danger"
-              onClick={() => this.deleteChecklistItem(index)}
-            >
-              x
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
-      );
-    });
+    let checklistItems = null;
+    if (this.state.topic.checklist) {
+      checklistItems = this.state.topic.checklist.map((item, index) => {
+        return (
+          <InputGroup className="mb-3" key={index}>
+            <FormControl
+              type="text"
+              data-index={index}
+              maxLength="255"
+              placeholder="Enter checklist item..."
+              value={item}
+              onChange={this.handleChecklistChange}
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-danger"
+                onClick={() => this.deleteChecklistItem(index)}
+              >
+                x
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        );
+      });
+    }
 
     return (
       <Modal
