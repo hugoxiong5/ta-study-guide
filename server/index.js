@@ -1,12 +1,38 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const db = require("../database/index.js");
+const { nextTick } = require("process");
+
+// var session = require("express-session");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(cookieParser());
+
+// session authentication: no mount path, executed every time the app receives a request
+// create a cookie if one doesn't exist or it's invalid
+app.use(async (req, res, next) => {
+  try {
+    await db.Sessions.retrieve(req.cookies.session);
+  } catch {
+    try {
+      res.clearCookie("session");
+      const session = await db.Sessions.save();
+      res.cookie("session", session.cookie, { maxAge: 600000000 });
+    } catch (err) {
+      console.log("Error:", err.message);
+    }
+  } finally {
+    next();
+  }
+});
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.get("/topics", async (req, res) => {
   try {

@@ -16,9 +16,18 @@ const save = async () => {
   return result.toJSON();
 };
 
-save();
-
-const retrieve = async () => {};
+const retrieve = async (cookie) => {
+  const result = await Session.findOne({
+    where: {
+      cookie,
+    },
+  });
+  if (result === null) {
+    throw new Error("no session found with this cookie");
+  } else {
+    return result;
+  }
+};
 
 const update = async (topic) => {};
 
