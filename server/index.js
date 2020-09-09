@@ -31,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
+/* TOPIC API */
+
 app.get("/topics", async (req, res) => {
   try {
     const topics = await db.Topics.retrieve();
@@ -67,6 +69,19 @@ app.delete("/topics", async (req, res) => {
   const topic = req.body;
   try {
     await db.Topics.remove(topic);
+    res.status(200).send();
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
+  }
+});
+
+/* RANKING API */
+app.put("/rankings", async (req, res) => {
+  const cookie = req.cookies.session;
+  const ranking = req.body;
+  try {
+    await db.Sessions.update(cookie, ranking);
     res.status(200).send();
   } catch (err) {
     console.log(err);

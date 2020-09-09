@@ -4,7 +4,10 @@ const crypto = require("crypto");
 
 const Session = sequelize.define("session", {
   cookie: DataTypes.STRING,
-  ratings: DataTypes.JSON,
+  ratings: {
+    type: DataTypes.JSON,
+    defaultValue: {},
+  },
 });
 
 const save = async () => {
@@ -29,9 +32,28 @@ const retrieve = async (cookie) => {
   }
 };
 
-const update = async (topic) => {};
+const update = async (cookie, rating) => {
+  const storedSession = await Session.findOne({
+    where: {
+      cookie,
+    },
+  });
+  const ratingsObj = JSON.parse(storedSession.ratings);
+  storedSession.ratings = JSON.stringify(Object.assign(ratingsObj, rating));
+  await storedSession.save();
+  await storedSession.reload();
+  console.log("session updated: ", storedSession.toJSON());
+};
 
-const remove = async (topic) => {};
+const remove = async (cookie) => {
+  const storedSession = await Session.findOne({
+    where: {
+      cookie,
+    },
+  });
+  await storedSession.destroy();
+  console.log("session deleted: ", storedSession.toJSON());
+};
 
 module.exports = {
   save,
