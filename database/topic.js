@@ -44,17 +44,17 @@ const remove = async (topic) => {
   console.log("topic deleted: ", storedTopic.toJSON());
 };
 
-// fix the missing checklist for Topics
-const fixData = async () => {
-  const topics = await retrieve();
-  topics.forEach((topic) => {
-    topic.checklist = JSON.stringify([]);
-    topic.save();
-    console.log(topic);
-  });
-};
+// fix problems with DATA >>> NEVER RUN ON PRODUCTION MULTIPLE TIMES!!!
+// const fixData = async () => {
+//   const topics = await retrieve();
+//   topics.forEach((topic) => {
+//     topic.checklist = JSON.stringify([]);
+//     topic.save();
+//     console.log(topic);
+//   });
+// };
 
-fixData();
+// fixData();
 
 module.exports = {
   save,
