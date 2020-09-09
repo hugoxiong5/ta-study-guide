@@ -7,8 +7,7 @@ const Topic = sequelize.define("topic", {
   order: DataTypes.INTEGER,
   linkAddress: DataTypes.STRING,
   linkLabel: DataTypes.STRING,
-  main: DataTypes.BOOLEAN,
-  list: DataTypes.INTEGER, // id of the "main" topic it's associated with (MAKE THIS INTO A SUBLIST???)
+  checklist: DataTypes.TEXT,
 });
 
 const save = async (topic) => {
@@ -17,6 +16,7 @@ const save = async (topic) => {
     text: topic.text,
     linkAddress: topic.linkAddress,
     linkLabel: topic.linkLabel,
+    checklist: JSON.stringify(topic.checklist),
   });
   console.log("new topic inserted: ", result.toJSON());
 };
@@ -32,6 +32,7 @@ const update = async (topic) => {
   storedTopic.text = topic.text;
   storedTopic.linkAddress = topic.linkAddress;
   storedTopic.linkLabel = topic.linkLabel;
+  storedTopic.checklist = JSON.stringify(topic.checklistlist);
   await storedTopic.save();
   await storedTopic.reload();
   console.log("topic updated: ", storedTopic.toJSON());

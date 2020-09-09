@@ -9,31 +9,14 @@ class AddTopicModal extends React.Component {
       text: "",
       linkAddress: "",
       linkLabel: "",
+      checklist: [],
     };
   }
 
-  handleTitleChange = (event) => {
-    this.setState({
-      title: event.target.value,
-    });
-  };
-
-  handleTextChange = (event) => {
-    this.setState({
-      text: event.target.value,
-    });
-  };
-
-  handleLinkAddressChange = (event) => {
-    this.setState({
-      linkAddress: event.target.value,
-    });
-  };
-
-  handleLinkLabelChange = (event) => {
-    this.setState({
-      linkLabel: event.target.value,
-    });
+  handleTopicInputChange = (event) => {
+    const newState = { ...this.state };
+    newState[event.target.name] = event.target.value;
+    this.setState(newState);
   };
 
   handleSubmit = (event) => {
@@ -65,10 +48,11 @@ class AddTopicModal extends React.Component {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
+                name="title"
                 placeholder="Enter title"
                 maxlength="255"
                 value={this.state.title}
-                onChange={this.handleTitleChange}
+                onChange={this.handleTopicInputChange}
               />
             </Form.Group>
 
@@ -76,10 +60,11 @@ class AddTopicModal extends React.Component {
               <Form.Label>Text</Form.Label>
               <Form.Control
                 as="textarea"
+                name="text"
                 maxlength="1234"
                 placeholder="Enter more information..."
                 value={this.state.text}
-                onChange={this.handleTextChange}
+                onChange={this.handleTopicInputChange}
               />
             </Form.Group>
 
@@ -87,10 +72,11 @@ class AddTopicModal extends React.Component {
               <Form.Label>Link Address</Form.Label>
               <Form.Control
                 type="text"
+                name="linkAddress"
                 maxlength="255"
                 placeholder="Enter link address (https://...)"
                 value={this.state.linkAddress}
-                onChange={this.handleLinkAddressChange}
+                onChange={this.handleTopicInputChange}
               />
             </Form.Group>
 
@@ -98,10 +84,22 @@ class AddTopicModal extends React.Component {
               <Form.Label>Link Label</Form.Label>
               <Form.Control
                 type="text"
+                name="linkLabel"
                 maxlength="255"
                 placeholder="Enter display text for link..."
                 value={this.state.linkLabel}
-                onChange={this.handleLinkLabelChange}
+                onChange={this.handleTopicInputChange}
+              />
+            </Form.Group>
+
+            <h5>Checklist:</h5>
+            <Form.Group>
+              <Form.Control
+                type="text"
+                maxlength="255"
+                placeholder="Add checklist item..."
+                value={this.state.linkLabel}
+                onChange={this.handleChecklistChange}
               />
             </Form.Group>
           </Modal.Body>
