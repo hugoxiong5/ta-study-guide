@@ -35,7 +35,11 @@ class TopicCard extends React.Component {
         break;
     }
     const listItems = topic.checklist.map((item, index) => {
-      return <ListGroup.Item key={index}>{item}</ListGroup.Item>;
+      return (
+        <ListGroup.Item as="li" key={index}>
+          {item}
+        </ListGroup.Item>
+      );
     });
     return (
       <Accordion className="m-3">
@@ -108,10 +112,11 @@ class TopicCard extends React.Component {
                     onClick={() => this.props.setEditModalShow(true, topic)}
                   ></i>
                 </div>
+                <hr />
+                <ListGroup as="ul" variant="flush">
+                  {listItems}
+                </ListGroup>
               </Card.Body>
-              <Card.Footer>
-                <ListGroup variant="flush">{listItems}</ListGroup>;
-              </Card.Footer>
             </>
           </Accordion.Collapse>
         </Card>

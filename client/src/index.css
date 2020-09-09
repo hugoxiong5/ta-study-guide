@@ -57,3 +57,9 @@ i.fa-edit:hover {
   text-align: right;
   padding: 0px 15px;
 }
+
+.list-group-item {
+  display: list-item;
+  border: none;
+  margin-left: 1rem;
+}
