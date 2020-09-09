@@ -34,13 +34,17 @@ class TopicCard extends React.Component {
         color = "success";
         break;
     }
-    const listItems = topic.checklist.map((item, index) => {
-      return (
-        <ListGroup.Item as="li" key={index}>
-          {item}
-        </ListGroup.Item>
-      );
-    });
+    let listItems = null;
+    if (topic.checklist) {
+      listItems = topic.checklist.map((item, index) => {
+        return (
+          <ListGroup.Item as="li" key={index}>
+            {item}
+          </ListGroup.Item>
+        );
+      });
+    }
+
     return (
       <Accordion className="m-3">
         <Card bg={color} text={color === "light" ? "dark" : "white"}>
@@ -112,10 +116,14 @@ class TopicCard extends React.Component {
                     onClick={() => this.props.setEditModalShow(true, topic)}
                   ></i>
                 </div>
-                <hr />
-                <ListGroup as="ul" variant="flush">
-                  {listItems}
-                </ListGroup>
+                {listItems.length > 0 ? (
+                  <>
+                    <hr />
+                    <ListGroup as="ul" variant="flush">
+                      {listItems}
+                    </ListGroup>
+                  </>
+                ) : null}
               </Card.Body>
             </>
           </Accordion.Collapse>
