@@ -12,7 +12,8 @@ app.use(cookieParser());
 // create a cookie if one doesn't exist or it's invalid
 app.use(async (req, res, next) => {
   try {
-    await db.Sessions.retrieve(req.cookies.session);
+    const session = await db.Sessions.retrieve(req.cookies.session);
+    req.sessionRatings = JSON.parse(session.ratings);
   } catch {
     try {
       res.clearCookie("session");
@@ -36,7 +37,14 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.get("/topics", async (req, res) => {
   try {
     const topics = await db.Topics.retrieve();
-    res.send(topics);
+    console.log("sessionRatings: ", req.sessionRatings);
+    const topicsWithRatings = topics.map((topic) => {
+      let topicObj = topic.toJSON();
+      topicObj.rating = req.sessionRatings[topicObj.id];
+      console.log(topicObj);
+      return topicObj;
+    });
+    res.send(topicsWithRatings);
   } catch (err) {
     console.log(err);
     res.status(400).send();
@@ -77,12 +85,12 @@ app.delete("/topics", async (req, res) => {
 });
 
 /* RANKING API */
-app.put("/rankings", async (req, res) => {
+app.put("/ratings", async (req, res) => {
   const cookie = req.cookies.session;
-  const ranking = req.body;
+  const rating = req.body;
   try {
-    await db.Sessions.update(cookie, ranking);
-    res.status(200).send();
+    await db.Sessions.update(cookie, rating);
+    res.status(201).send();
   } catch (err) {
     console.log(err);
     res.status(400).send();
