@@ -46,7 +46,7 @@ class TopicCard extends React.Component {
             >
               {topic.title}
             </Accordion.Toggle>
-            <div className="rating mt-2 mt-sm-0">
+            <div className="rating mt-2 mt-md-0">
               <div>
                 <input
                   type="radio"
